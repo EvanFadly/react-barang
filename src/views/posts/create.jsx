@@ -29,6 +29,7 @@ export default function PostsCreate() {
         formData.append("foto", image);
 
         await Api.post("/barangs", formData, {
+            
             headers: {
                 "Content-Type": "multipart/form-data",
             },

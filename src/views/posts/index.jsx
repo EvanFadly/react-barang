@@ -18,8 +18,19 @@ export default function PostsIndex() {
         fetchDataPosts();
     }, []);
 
+    const deletePost = async (id) => {
+        await api.delete(`/barangs/${id}`).then(() => {
+            fetchDataPosts();
+        });
+    };
+
     return (
         <div className="container mt-5 mb-5">
+            <div className="flex justify-end">
+                <Link to={"/posts/create"} className="btn btn-sm btn-primary mb-3 p-2">
+                    Create
+                </Link>
+            </div>
             <div className="row">
                 <div className="col-md-12">
                     <div className="card border-0 shadow">
@@ -28,7 +39,7 @@ export default function PostsIndex() {
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Brang</th>
+                                        <th scope="col">Barang</th>
                                         <th scope="col">Berat</th>
                                         <th>Foto</th>
                                         <th scope="col">Action</th>
@@ -42,11 +53,11 @@ export default function PostsIndex() {
                                             <td>{post.nama_barang}</td>
                                             <td>{post.berat}</td>
                                             <td>
-                                                <img src="post.foto" alt="" style={{ width: "100px" }} />
+                                                <img src={post.foto} alt="" style={{ width: "100px" }} />
                                             </td>
                                             <td>
-                                                <a href="#" className="btn btn-sm btn-warning me-2">Edit</a>
-                                                <a href="#" className="btn btn-sm btn-danger">Delete</a>
+                                                <Link to={`/posts/edit/${post.id}`} className="btn btn-sm btn-warning mr-1">Edit</Link>
+                                                <button  onClick={() => deletePost(post.id)} className="btn btn-sm btn-danger">Delete</button>
                                             </td>
                                         </tr>
                                     ))}

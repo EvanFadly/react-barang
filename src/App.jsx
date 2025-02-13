@@ -22,9 +22,6 @@ export default function App() {
           <li>
             <Link to="/posts" className="text-white font-bold">Product</Link>
           </li>
-          <li>
-            <Link to="/posts/create" className="text-white font-bold">Create</Link>
-          </li>
         </ul>
       </div>
     </nav>
